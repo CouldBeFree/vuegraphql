@@ -25,13 +25,22 @@
           </option>
         </select>
       </div>
-      <button @click.prevent="getData">+</button>
+      <button @click.prevent="setData">+</button>
     </form>
   </div>
 </template>
 
 <script>
   import gql from 'graphql-tag'
+
+  const addBookMutation = gql`
+    mutation ($name:String!, $genre:String!, $authorId:ID!){
+      addBook(name:$name, genre:$genre, authorId:$authorId){
+        name
+        id
+      }
+    }
+  `;
 
   const getAuthorQuery = gql`
   query test{
@@ -49,8 +58,7 @@
         authors:[],
         name:'',
         genre:'',
-        selectedAuthor:'',
-        authorId:''
+        selectedAuthor:''
       }
     },
     apollo: {
@@ -59,13 +67,22 @@
       }
     },
     methods:{
-      getData(){
+      setData(){
         let data = {
           name: this.name,
           genre: this.genre,
           id: this.selectedAuthor
         };
-        console.log(data);
+        this.$apollo.mutate({
+          mutation: addBookMutation,
+          variables: {
+            name: this.name,
+            genre: this.genre,
+            authorId: this.selectedAuthor
+          }
+        }).then(data => {
+          console.log('True')
+        })
       }
     }
   }
