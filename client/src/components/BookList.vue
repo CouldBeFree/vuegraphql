@@ -1,18 +1,20 @@
 <template>
-  <div>
-    <div v-if="$apolloData.queries.books.loading">
-      <p>Books are loading...</p>
+  <div class="wrapper">
+    <div class="left-part">
+      <div v-if="$apolloData.queries.books.loading">
+        <p>Books are loading...</p>
+      </div>
+      <ul id="book-list" v-else>
+        <li
+          v-for="book in books"
+          :key="book.id"
+          @click="getCurrent(book)"
+          class="list-item"
+        >
+          {{book.name}}
+        </li>
+      </ul>
     </div>
-    <ul id="book-list" v-else>
-      <li
-        v-for="book in books"
-        :key="book.id"
-        @click="getCurrent(book)"
-        class="list-item"
-      >
-        {{book.name}}
-      </li>
-    </ul>
     <BookDetails :current="currentItem"/>
   </div>
 </template>
@@ -57,5 +59,13 @@
 <style scoped>
   .list-item{
     cursor: pointer;
+  }
+
+  .left-part{
+    margin-right: 100px;
+  }
+
+  .wrapper{
+    display: flex;
   }
 </style>

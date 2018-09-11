@@ -1,6 +1,6 @@
 <template>
   <div id="book-details">
-    <div>
+    <div v-if="book">
       <h2>{{book.name}}</h2>
       <p>{{book.genre}}</p>
       <p>{{book.author.name}}</p>
@@ -8,6 +8,9 @@
       <ul class="other-books" v-for="item in book.author.books">
         <li :key="item.id">{{item.name}}</li>
       </ul>
+    </div>
+    <div v-else>
+      <p>Select book</p>
     </div>
   </div>
 </template>
