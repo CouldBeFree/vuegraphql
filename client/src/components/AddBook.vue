@@ -42,6 +42,15 @@
     }
   `;
 
+  const getBooksQuery = gql`
+  query test{
+      books{
+        name
+        id
+      }
+    }
+  `;
+
   const getAuthorQuery = gql`
   query test{
       authors{
@@ -64,6 +73,9 @@
     apollo: {
       authors:{
         query: getAuthorQuery
+      },
+      books:{
+        query: getBooksQuery
       }
     },
     methods:{
@@ -82,7 +94,9 @@
           }
         }).then(data => {
           console.log('True')
-        })
+        });
+        this.$apollo.queries.books.refetch()
+          .then(res => console.log(res))
       }
     }
   }
