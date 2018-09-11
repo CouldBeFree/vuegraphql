@@ -1,15 +1,15 @@
 # vue-project
 
-> A Vue.js project with GraphQL API
+## A Vue.js project with GraphQL API
 
-## To run server
+### To run server
 
-#### cd/server
-#### npm install
-#### to run server: nodemon app
+##### cd/server
+##### npm install
+##### to run server: nodemon app
 
-## To run client
+### To run client
 
-#### cd/client
-#### npm install
-#### to run client: npm run dev
+##### cd/client
+##### npm install
+##### to run client: npm run dev
