@@ -4,13 +4,22 @@
       <p>Books are loading...</p>
     </div>
     <ul id="book-list" v-else>
-      <li v-for="book in books" :key="book.id">{{book.name}}</li>
+      <li
+        v-for="book in books"
+        :key="book.id"
+        @click="getCurrent(book)"
+        class="list-item"
+      >
+        {{book.name}}
+      </li>
     </ul>
+    <BookDetails :current="currentItem"/>
   </div>
 </template>
 
 <script>
   import gql from 'graphql-tag'
+  import BookDetails from './BookDetails'
 
   const getBooksQuery = gql`
   query test{
@@ -23,9 +32,18 @@
 
   export default {
     name: "BookList",
+    components: {
+      BookDetails
+    },
     data(){
       return{
-        books:[]
+        books:[],
+        currentItem: ''
+      }
+    },
+    methods:{
+      getCurrent(item){
+        this.currentItem = item.id;
       }
     },
     apollo: {
@@ -37,5 +55,7 @@
 </script>
 
 <style scoped>
-
+  .list-item{
+    cursor: pointer;
+  }
 </style>

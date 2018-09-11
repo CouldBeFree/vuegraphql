@@ -65,6 +65,7 @@
     data(){
       return{
         authors:[],
+        book:[],
         name:'',
         genre:'',
         selectedAuthor:''
@@ -80,11 +81,6 @@
     },
     methods:{
       setData(){
-        let data = {
-          name: this.name,
-          genre: this.genre,
-          id: this.selectedAuthor
-        };
         this.$apollo.mutate({
           mutation: addBookMutation,
           variables: {
