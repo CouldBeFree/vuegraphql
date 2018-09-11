@@ -6,7 +6,7 @@
       <p>{{book.author.name}}</p>
       <p>All books by this author</p>
       <ul class="other-books" v-for="item in book.author.books">
-        <li>{{item.name}}</li>
+        <li :key="item.id">{{item.name}}</li>
       </ul>
     </div>
   </div>
