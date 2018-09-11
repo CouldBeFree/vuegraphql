@@ -46,12 +46,23 @@
     methods:{
       getCurrent(item){
         this.currentItem = item.id;
+      },
+      rendomId(){
+        let arr = this.books;
+        let length = arr.length;
+        let random = Math.random() * (length - 1) + 1;
+        console.log(parseInt(random));
+        let randomItem = this.books[random];
+        console.log(this.books[random]);
       }
     },
-    apollo: {
+    apollo:{
       books:{
         query: getBooksQuery
       }
+    },
+    mounted(){
+      this.rendomId();
     }
   }
 </script>
